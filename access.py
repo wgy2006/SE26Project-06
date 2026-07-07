@@ -40,7 +40,15 @@ def check_access(
     action = str(payload["action"]).lower()
     resource = str(payload["resource"])
 
-    allowed_actions = rules.get(role, set())
+    if role not in rules:
+        return {
+            "ok": False,
+            "allowed": False,
+            "code": "INVALID_ROLE",
+            "message": f"Role must be one of: {', '.join(sorted(rules))}",
+        }
+
+    allowed_actions = rules[role]
     allowed = "*" in allowed_actions or action in allowed_actions
 
     return {
