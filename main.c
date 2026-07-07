@@ -6,3 +6,10 @@ int main() {
 
     return 0;
 }
+
+//哦对了这里是杨可卓的更改
+
+void ykz() {
+    int ykz = 666;
+    int ykznb = ykz * ykz;
+}
